@@ -16,6 +16,8 @@ TODO map
 -->
 <% if  user_signed_in? %>
 
+
+
 <div id="sessions">
 
 <%= render "shooting_sessions/list" , :locals => { :shooting_sessions => @shooting_sessions  , :shooting_range => @shooting_range }  %>
@@ -23,6 +25,8 @@ TODO map
 </div>
 
 <% end %>
+
+
 
  <% if is_admin_user %>
   <%= link_to 'Edit', edit_shooting_range_path(@shooting_range) %> |

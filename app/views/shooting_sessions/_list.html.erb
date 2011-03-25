@@ -1,5 +1,5 @@
-<h2>Listing shooting_sessions</h2>
-
+<h2>Sessions</h2>
+<% if @shooting_sessions.length > 0 %>
 <table>
   <tr>
     <th>Performed on</th>
@@ -23,7 +23,7 @@
   </tr>
 <% end %>
 </table>
-
+<% end %>
 <br />
 
 <%= link_to 'New Shooting session on this range', new_shooting_range_shooting_session_url(:shooting_range_id => @shooting_range.id) %>
