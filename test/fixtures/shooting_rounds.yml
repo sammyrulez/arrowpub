@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  session_id: 1
+  arrows: 1
+  targets: 1
+  spots: 1
+
+two:
+  session_id: 1
+  arrows: 1
+  targets: 1
+  spots: 1

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Session:</b>
+  <%= @shooting_round.session_id %>
+</p>
+
+<p>
+  <b>Arrows:</b>
+  <%= @shooting_round.arrows %>
+</p>
+
+<p>
+  <b>Targets:</b>
+  <%= @shooting_round.targets %>
+</p>
+
+<p>
+  <b>Spots:</b>
+  <%= @shooting_round.spots %>
+</p>
+
+
+<%= link_to 'Edit', edit_shooting_round_path(@shooting_round) %> |
+<%= link_to 'Back', shooting_rounds_path %>

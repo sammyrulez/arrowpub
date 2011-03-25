@@ -1,0 +1,30 @@
+<%= form_for([@shooting_range, @shooting_session,@shooting_round]) do |f| %>
+  <% if @shooting_round.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shooting_round.errors.count, "error") %> prohibited this shooting_round from being saved:</h2>
+
+      <ul>
+      <% @shooting_round.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :arrows %><br />
+    <%= f.text_field :arrows %>
+  </div>
+  <div class="field">
+    <%= f.label :targets %><br />
+    <%= f.text_field :targets %>
+  </div>
+  <div class="field">
+    <%= f.label :spots %><br />
+    <%= f.text_field :spots %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

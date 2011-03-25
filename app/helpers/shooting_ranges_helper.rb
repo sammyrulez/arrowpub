@@ -1,0 +1,2 @@
+module ShootingRangesHelper
+end

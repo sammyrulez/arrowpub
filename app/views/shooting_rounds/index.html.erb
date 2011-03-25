@@ -1,0 +1,29 @@
+<h1>Listing shooting_rounds</h1>
+
+<table>
+  <tr>
+    <th>Session</th>
+    <th>Arrows</th>
+    <th>Targets</th>
+    <th>Spots</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @shooting_rounds.each do |shooting_round| %>
+  <tr>
+    <td><%= shooting_round.session_id %></td>
+    <td><%= shooting_round.arrows %></td>
+    <td><%= shooting_round.targets %></td>
+    <td><%= shooting_round.spots %></td>
+    <td><%= link_to 'Show', shooting_round %></td>
+    <td><%= link_to 'Edit', edit_shooting_round_path(shooting_round) %></td>
+    <td><%= link_to 'Destroy', shooting_round, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Shooting round', new_shooting_round_path %>

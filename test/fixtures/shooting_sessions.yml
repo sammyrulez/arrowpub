@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  performed_on: 2011-03-24
+  range_id: 1
+  archer_id: 1
+
+two:
+  performed_on: 2011-03-24
+  range_id: 1
+  archer_id: 1

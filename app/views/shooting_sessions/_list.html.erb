@@ -1,0 +1,29 @@
+<h2>Listing shooting_sessions</h2>
+
+<table>
+  <tr>
+    <th>Performed on</th>
+    <th>Range</th>
+    <th>Archer</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @shooting_sessions.each do |shooting_session| %>
+  <tr>
+    <td><%= shooting_session.performed_on %></td>   
+    <td><%= link_to 'Show', shooting_range_shooting_session_url(shooting_session ,:shooting_range_id => @shooting_range.id) %></td>
+    <td>
+        <% if is_sessionOwned(shooting_session) %>
+            <%= link_to 'Edit', edit_shooting_range_shooting_session_url(shooting_session ,:shooting_range_id => @shooting_range.id) %>
+        <% end %>
+   </td>
+    <td><%= link_to 'Destroy', shooting_range_shooting_session_url(shooting_session ,:shooting_range_id => @shooting_range.id), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Shooting session on this range', new_shooting_range_shooting_session_url(:shooting_range_id => @shooting_range.id) %>

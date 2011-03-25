@@ -1,0 +1,31 @@
+<h2>
+  <%= @shooting_range.name %>
+</h2>
+
+<p>  
+  <%= @shooting_range.description %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @shooting_range.address %>
+</p>
+
+<!--
+TODO map
+-->
+<% if  user_signed_in? %>
+
+<div id="sessions">
+
+<%= render "shooting_sessions/list" , :locals => { :shooting_sessions => @shooting_sessions  , :shooting_range => @shooting_range }  %>
+
+</div>
+
+<% end %>
+
+ <% if is_admin_user %>
+  <%= link_to 'Edit', edit_shooting_range_path(@shooting_range) %> |
+ <% end %> 
+
+<%= link_to 'Back', shooting_ranges_path %>

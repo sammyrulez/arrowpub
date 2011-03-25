@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Performed on:</b>
+  <%= @shooting_session.performed_on %>
+</p>
+
+<p>
+  <b>Range:</b>
+  <%= @shooting_session.shooting_range.name %>
+</p>
+
+<div id="rounds">
+
+<%= render "shooting_rounds/list" , :locals => { :shooting_rounds => @shooting_rounds  ,:shooting_session => @shooting_session , :shooting_range => @shooting_range }  %>
+
+
+</div>
+
+
+
+
+<%= link_to 'Edit', edit_shooting_range_shooting_session_url(@shooting_session ,:shooting_range_id => @shooting_range.id) %> |
+<%= link_to 'Back', shooting_range_url(@shooting_range) %>
