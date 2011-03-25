@@ -1,0 +1,80 @@
+<% if user_signed_in? %>
+
+    <div>
+      <h1>Your activity chart</h1>
+
+      <div id="chart"></div>
+
+      <div>
+        <% if @shooting_sessions.length > 0 %>
+            <h1>Latest sessions</h1>
+
+            <table>
+              <tr>
+                <th>Performed on</th>
+                <th>Range</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+
+              <% @shooting_sessions.each do |shooting_session| %>
+                  <tr>
+                    <td><%= shooting_session.performed_on %></td>
+                    <td><%= link_to 'Show', shooting_range_shooting_session_url(shooting_session, :shooting_range_id => shooting_session.shooting_range.id) %></td>
+                    <td>
+                      <% if is_sessionOwned(shooting_session) %>
+                          <%= link_to 'Edit', edit_shooting_range_shooting_session_url(shooting_session, :shooting_range_id => shooting_session.shooting_range.id) %>
+                      <% end %>
+                    </td>
+                    <td><%= link_to 'Destroy', shooting_range_shooting_session_url(shooting_session, :shooting_range_id => shooting_session.shooting_range.id), :confirm => 'Are you sure?', :method => :delete %></td>
+                  </tr>
+              <% end %>
+            </table>
+        <% end %>
+
+
+      </div>
+
+
+
+
+    </div>
+<% else %>
+    <h1>Welcome please login or signup and start scoring!</h1>
+
+<% end %>
+
+ <div>
+        <h1>Ranges</h1>
+
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Address</th>
+            <th></th>
+            <% if is_admin_user %>
+                <th></th>
+                <th></th>
+            <% end %>
+          </tr>
+
+          <% @shooting_ranges.each do |shooting_range| %>
+              <tr>
+                <td><%= shooting_range.name %></td>
+                <td><%= shooting_range.description %></td>
+                <td><%= shooting_range.address %></td>
+                <td><%= link_to 'Show', shooting_range %></td>
+                <% if is_admin_user %>
+                    <td><%= link_to 'Edit', edit_shooting_range_path(shooting_range) %></td>
+                    <td><%= link_to 'Destroy', shooting_range, :confirm => 'Are you sure?', :method => :delete %></td>
+                <% end %>
+
+              </tr>
+          <% end %>
+        </table>
+
+      </div>
+
+
