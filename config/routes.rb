@@ -5,6 +5,8 @@ Arrowpub::Application.routes.draw do
 
   get "dashboard/index"
 
+  get "shooting_ranges/:shooting_range_id/shooting_sessions/:shooting_session_id/stats_count_pie" => 'shooting_sessions#stats_count_pie'
+
   devise_for :users
 
   resources :shooting_ranges do

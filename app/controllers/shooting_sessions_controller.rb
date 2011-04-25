@@ -1,4 +1,7 @@
+
+
 class ShootingSessionsController < ApplicationController
+
 
 
   before_filter :grab_range_from_id
@@ -20,6 +23,11 @@ class ShootingSessionsController < ApplicationController
   # GET /shooting_sessions/1.xml
   def show
     @shooting_session = ShootingSession.find(params[:id])
+
+    @stats_count = @shooting_session.stats
+    @graph = open_flash_chart_object(300,300,"/shooting_ranges/1/shooting_sessions/1/stats_count_pie")
+
+
    @shooting_rounds = []
    if @shooting_session.rounds 
      @shooting_rounds = @shooting_session.rounds 
@@ -31,6 +39,29 @@ class ShootingSessionsController < ApplicationController
       format.xml  { render :xml => @shooting_session }
     end
   end
+
+
+  def stats_count_pie
+    title = Title.new("Arrow Distribution")
+     shooting_session = ShootingSession.find(params[:shooting_session_id])
+    stats_count = shooting_session.stats
+
+    pie = Pie.new
+    pie.start_angle = 35
+    pie.animate = true
+    pie.tooltip = '#val# of #total#<br>#percent# of 100%'
+    pie.colours = ["#d01f3c", "#356aa0", "#C79810"]
+    pie.values  = [ PieValue.new(stats_count.targets,"On Target"), PieValue.new(stats_count.spots,"Spots") ,PieValue.new(stats_count.arrows - stats_count.targets - stats_count.spots,"Misses")]
+
+    chart = OpenFlashChart.new
+    chart.title = title
+    chart.add_element(pie)
+
+    chart.x_axis = nil
+
+    render :text => chart.to_s
+  end
+
 
   # GET /shooting_sessions/new
   # GET /shooting_sessions/new.xml

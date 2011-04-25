@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
   <b>Performed on:</b>
@@ -10,7 +10,25 @@
   <%= @shooting_session.shooting_range.name %>
 </p>
 
+<div>
+<%=raw @graph %>
+
+</div>
+
 <div id="rounds">
+
+<p>
+  <b>Total arrows</b>
+  <%=@stats_count.arrows -%>
+</p>
+  <p>
+  <b>Total arrows on target</b>
+  <%=@stats_count.targets -%>
+</p>
+  <p>
+  <b>Total spots</b>
+  <%=@stats_count.spots -%>
+</p>
 
 <%= render "shooting_rounds/list" , :locals => { :shooting_rounds => @shooting_rounds  ,:shooting_session => @shooting_session , :shooting_range => @shooting_range }  %>
 

@@ -9,6 +9,13 @@ class ShootingSession < ActiveRecord::Base
 	validates_presence_of :shooting_range, :on => :create, :message => "something is wrong"
 	validates_presence_of :performed_on, :on => :create, :message => "Date performed is mandatory"
 
+  def stats
+
+    ShootingSession.find(:all, :joins => :rounds, :select => "  sum(arrows) as arrows, sum(targets) as targets ,sum(spots) as spots").first
+
+
+  end
+
 	
 	
 end
