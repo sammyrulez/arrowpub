@@ -6,7 +6,7 @@
     <th>Description</th>
     <th>Address</th>
     <th></th>
-    <% if is_admin_user %>
+   <% if user_signed_in? %>
     <th></th>
     <th></th>
     <% end %>
@@ -18,7 +18,7 @@
     <td><%= shooting_range.description %></td>
     <td><%= shooting_range.address %></td>
     <td><%= link_to 'Show', shooting_range %></td>
-     <% if is_admin_user %>
+     <% if user_signed_in? %>
          <td><%= link_to 'Edit', edit_shooting_range_path(shooting_range) %></td>
          <td><%= link_to 'Destroy', shooting_range, :confirm => 'Are you sure?', :method => :delete %></td>
      <% end %>
@@ -28,6 +28,6 @@
 </table>
 
 <br />
-<% if is_admin_user %>
+<% if user_signed_in? %>
     <%= link_to 'New Shooting range', new_shooting_range_path %>
 <% end %>
