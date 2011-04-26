@@ -11,7 +11,7 @@ class ShootingSession < ActiveRecord::Base
 
   def stats
 
-    ShootingSession.find(:all, :joins => :rounds, :select => "  sum(arrows) as arrows, sum(targets) as targets ,sum(spots) as spots").first
+    ShootingSession.find(self.id, :joins => :rounds, :select => "  sum(arrows) as arrows, sum(targets) as targets ,sum(spots) as spots")
 
 
   end

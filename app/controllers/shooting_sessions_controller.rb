@@ -25,7 +25,7 @@ class ShootingSessionsController < ApplicationController
     @shooting_session = ShootingSession.find(params[:id])
 
     @stats_count = @shooting_session.stats
-    @graph = open_flash_chart_object(300,300,"/shooting_ranges/1/shooting_sessions/1/stats_count_pie")
+    @graph = open_flash_chart_object(300,300,"/shooting_ranges/#{@shooting_range.id}/shooting_sessions/#{@shooting_session.id}/stats_count_pie")
 
 
    @shooting_rounds = []
