@@ -47,11 +47,11 @@ class ShootingSessionsController < ApplicationController
     stats_count = shooting_session.stats
 
     pie = Pie.new
-    pie.start_angle = 35
+    pie.start_angle = 15
     pie.animate = true
     pie.tooltip = '#val# of #total#<br>#percent# of 100%'
     pie.colours = ["#d01f3c", "#356aa0", "#C79810"]
-    pie.values  = [ PieValue.new(stats_count.targets,"On Target"), PieValue.new(stats_count.spots,"Spots") ,PieValue.new(stats_count.arrows.to_i - stats_count.targets.to_i - stats_count.spots.to_i,"Misses")]
+    pie.values  = [ PieValue.new(stats_count.targets.to_i,"On Target"), PieValue.new(stats_count.spots.to_i,"Spots") ,PieValue.new(stats_count.arrows.to_i - stats_count.targets.to_i - stats_count.spots.to_i,"Misses")]
 
     chart = OpenFlashChart.new
     chart.title = title
