@@ -51,7 +51,7 @@ class ShootingSessionsController < ApplicationController
     pie.animate = true
     pie.tooltip = '#val# of #total#<br>#percent# of 100%'
     pie.colours = ["#d01f3c", "#356aa0", "#C79810"]
-    pie.values  = [ PieValue.new(stats_count.targets,"On Target"), PieValue.new(stats_count.spots,"Spots") ,PieValue.new(stats_count.arrows - stats_count.targets - stats_count.spots,"Misses")]
+    pie.values  = [ PieValue.new(stats_count.targets,"On Target"), PieValue.new(stats_count.spots,"Spots") ,PieValue.new(stats_count.arrows.to_i - stats_count.targets.to_i - stats_count.spots.to_i,"Misses")]
 
     chart = OpenFlashChart.new
     chart.title = title
