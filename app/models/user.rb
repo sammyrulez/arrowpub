@@ -6,4 +6,12 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me ,:is_admin
+
+    def stats
+
+    ShootingSession.find(:all ,:conditions => {:archer_id => self.id} , :joins => :rounds, :select => "  sum(arrows) as arrows, sum(targets) as targets ,sum(spots) as spots").first
+
+
+  end
+
 end

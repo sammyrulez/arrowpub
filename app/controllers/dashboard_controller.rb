@@ -1,4 +1,8 @@
 class DashboardController < ApplicationController
+
+
+  before_filter :authenticate_user! , :only => [:stats_count_pie]
+
   def index
 
     @shooting_ranges = ShootingRange.find(:all)
@@ -6,6 +10,8 @@ class DashboardController < ApplicationController
     if  user_signed_in?
 
       @shooting_sessions = ShootingSession.find_all_by_archer_id current_user.id
+      @arrows_chart = open_flash_chart_object(300,300,"/dashboard/stats_count_pie")
+
 
 
     end
@@ -14,8 +20,8 @@ class DashboardController < ApplicationController
   
   def stats_count_pie
     title = Title.new("Arrow Distribution")
-     shooting_session = ShootingSession.find(params[:shooting_session_id])
-    stats_count = shooting_session.stats
+
+    stats_count = current_user.stats
 
     pie = Pie.new
     pie.start_angle = 15
@@ -31,6 +37,10 @@ class DashboardController < ApplicationController
     chart.x_axis = nil
 
     render :text => chart.to_s
+  end
+
+  def stats_trend_lines
+    
   end
 
 end

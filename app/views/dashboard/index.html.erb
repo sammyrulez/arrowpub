@@ -3,7 +3,11 @@
     <div>
       <h1>Your activity chart</h1>
 
-      <div id="chart"></div>
+      <div id="charts">
+
+        <%=raw @arrows_chart %>
+
+      </div>
 
       <div>
         <% if @shooting_sessions.length > 0 %>
