@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
 
 
-  before_filter :authenticate_user! , :only => [:stats_count_pie]
+  before_filter :authenticate_user! , :only => [:stats_count_pie , :stats_trend_lines]
 
   def index
 
@@ -11,6 +11,7 @@ class DashboardController < ApplicationController
 
       @shooting_sessions = ShootingSession.find_all_by_archer_id current_user.id
       @arrows_chart = open_flash_chart_object(300,300,"/dashboard/stats_count_pie")
+      @trend_chart = open_flash_chart_object(300,300,"/dashboard/stats_trend_lines")
 
 
 
@@ -40,6 +41,35 @@ class DashboardController < ApplicationController
   end
 
   def stats_trend_lines
+
+    title = Title.new("Session trends")
+    trends_count = current_user.trends
+
+
+   # line_style_arrows = LineStyle.new(:on => 30, :off => 10, :args => {})
+
+
+    lines =[]
+    arrows_data = []
+
+    trends_count.each do |count|
+
+      arrows_data << count.arrows.to_i
+
+    end
+
+
+    line4Arrows = Line.new(:values => [9, 8, 7, 6, 5, 4, 3, 2, 1, 12])
+    ##lines << line4Arrows
+    
+
+
+    chart = OpenFlashChart.new
+    chart.title = title
+    chart << line4Arrows
+    render :text => chart.to_s
+
+
     
   end
 

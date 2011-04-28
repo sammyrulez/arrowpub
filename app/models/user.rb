@@ -12,6 +12,12 @@ class User < ActiveRecord::Base
     ShootingSession.find(:all ,:conditions => {:archer_id => self.id} , :joins => :rounds, :select => "  sum(arrows) as arrows, sum(targets) as targets ,sum(spots) as spots").first
 
 
+    end
+
+  def trends
+    ShootingSession.find(:all ,:conditions => {:archer_id => self.id} , :joins => :rounds, :select => "  sum(arrows) as arrows, sum(targets) as targets ,sum(spots) as spots , performed_on " , :group => " performed_on ")
+
+
   end
 
 end
